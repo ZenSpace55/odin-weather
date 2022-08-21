@@ -73,19 +73,27 @@ const stateFullName = new Map([
 //var lat = 40;
 //var lon = 40;
 
+
+
 async function getWeather(){
     var myCity = document.querySelector("#cityInput").value;
     console.log("searching for " + myCity);
-    const reply = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${myCity}&APPID=${myKey}&units=metric`)//fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${myKey}`)
+    const reply = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${myCity}&APPID=${myKey}&units=metric`);//fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${myKey}`)
     const data = await reply.json();
     console.log(data);
-    document.querySelector("#cityName").textContent = data["name"];
-    document.querySelector("#cityTemp").textContent = data["main"]["temp"];
+    if (data["cod"] > 200){
+        document.querySelector("#cityName").textContent = "City not found...";
+        document.querySelector("#cityTemp").textContent = "";
+        document.querySelector("#weatherDescription").textContent = "";
+    }
+    else{
+        document.querySelector("#cityName").textContent = data["name"];
+        document.querySelector("#cityTemp").textContent = data["main"]["temp"] + String.fromCharCode(176);
+        var descriptionText = data["weather"][0]["description"]
+        document.querySelector("#weatherDescription").textContent = `${descriptionText[0].toUpperCase()}${descriptionText.slice(1).toLowerCase()}`;//titledata["weather"][0]["description"];
+    }
     //console.log(myWeather);
 }
-
-getWeather("Norfolk");
-
 
 function prepPage(){
     console.log("prepaing page");
@@ -103,3 +111,5 @@ function prepPage(){
 }
 
 prepPage();
+var myCity = document.querySelector("#cityInput").value = "Boston, Massachusetts";
+getWeather();

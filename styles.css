@@ -1,5 +1,10 @@
 body{
-    background-color: rgb(51, 51, 51);
+    background-color: black;
+    background: url(img/ryan-hutton-Jztmx9yqjBw-unsplash.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
 
 h1{
@@ -20,10 +25,32 @@ h1{
 .weatherDisplay{
     position: absolute;
     background-color: black;
-    top: 33%;
-    padding: 2em
+    top: 20%;
+    padding: 3em;
+    margin-left: 1em;
+    border-radius: 5%;
 }
 
 .weatherReport{
-    color: white;
+    color: rgb(255, 255, 255);
+}
+
+.temp{
+    font-weight: 700;
+    font-size: 6em;
+    font-family: sans-serif;
+}
+
+.city{
+    font-size: 3em;
+    font-weight: 600;
+    text-align: end;
+    margin-bottom: .25em;
+    font-family: sans-serif;
+    text-decoration: underline;
+}
+
+.description{
+    font-size: 2em;
+    font-family: sans-serif;
 }
